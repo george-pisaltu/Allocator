@@ -4,6 +4,7 @@
 
 unsigned char* arena;
 
+//Creates the memory location of N bytes
 void INITIALIZE(unsigned char* arena, int n)
 {
     int i;
@@ -13,11 +14,14 @@ void INITIALIZE(unsigned char* arena, int n)
     }
 }
 
+//Ends the program
 void FINALIZE(unsigned char* arena)
 {
     free(arena);
 }
 
+//Allocates a block of SIZE bytes and prints the memory location
+//of the first byte in the block or 0 if there isn't enough space
 int ALLOC(unsigned char* arena, int n, unsigned int SIZE, int* b)
 {
     int *p, i, *q = &(arena[0]), *r;
@@ -86,6 +90,7 @@ int ALLOC(unsigned char* arena, int n, unsigned int SIZE, int* b)
     return -1;
 }
 
+//Prints the memory in hex
 int DUMP(unsigned char* arena, int n)
 {
     int i;
@@ -105,6 +110,7 @@ int DUMP(unsigned char* arena, int n)
     return 0;
 }
 
+//Writes X in memory S times, beginning at the byte I
 int FILL(unsigned char* arena, int n, int i, int x, int s)
 {
     int j;
@@ -114,6 +120,7 @@ int FILL(unsigned char* arena, int n, int i, int x, int s)
     return 0;
 }
 
+//Frees the block starting at the byte I
 int FREE(unsigned char* arena, int i, int* c)
 {
     int *q, j, *a, *b, size;
@@ -127,6 +134,7 @@ int FREE(unsigned char* arena, int i, int* c)
     return 0;
 }
 
+//Prints no of blocks and bytes free
 int SHOW_FREE(unsigned char* arena, int n, int* b)
 {
     int *p, nr = 0, nr1 = 0, i, *q, e, f, ok = 0;
@@ -156,6 +164,7 @@ int SHOW_FREE(unsigned char* arena, int n, int* b)
     return 0;
 }
 
+//Prints no of blocks and bytes used and their efficiency and fragmentation
 int SHOW_USAGE(unsigned char* arena, int n, int* b)
 {
     int *p, nr = 0, nr1 = 0, i, *q, e, f, ok = 0;
@@ -197,6 +206,7 @@ int SHOW_USAGE(unsigned char* arena, int n, int* b)
     return 0;
 }
 
+//Prints all blocks, used and free,  and the totals
 int SHOW_ALLOCATIONS(unsigned char* arena, int n)
 {
     int *p = &(arena[0]), i, *q, d;
